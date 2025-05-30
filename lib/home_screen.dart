@@ -45,16 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       floatingActionButton: ElevatedButton.icon(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await  Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const AddTask()),
           );
+          _getData();
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          fixedSize: const Size(170, 50),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          fixedSize: const Size(170, 40),
         ),
         icon: const Icon(Icons.add),
         label: const Text("Add New Task"),
@@ -103,6 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(height: 16),
+              Text("My Tasks", style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
                   itemCount: tasksList.length,
